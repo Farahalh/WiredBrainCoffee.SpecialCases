@@ -6,12 +6,14 @@
         {
             _ = new Container<string>();
             _ = new Container<string>();
-            _ = new Container<int>();
+            var container = new Container<int>();
 
             Console.WriteLine($"Container<string>: {Container<string>.InstanceCount}");
             Console.WriteLine($"Container<int>: {Container<int>.InstanceCount}");
             Console.WriteLine($"Container<bool>: {Container<bool>.InstanceCount}");
             Console.WriteLine($"ContainerBase: {ContainerBase.InstanceCountBase}");
+
+            container.PrintItem("Hello from generic method in generic class.");
 
             Console.ReadLine();
         }
@@ -29,5 +31,10 @@
         public Container() => InstanceCount++;
 
         public static int InstanceCount { get; private set; }
+
+        public void PrintItem<TItem>(TItem item)
+        {
+            Console.WriteLine($"Item: {item}");
+        }
     }
 }
